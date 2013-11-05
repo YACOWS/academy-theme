@@ -1,0 +1,12 @@
+{
+    "identifier":   "academy",
+    "application":  "quokka",
+    "name":         "Quokka Yacows academy theme",
+    "description":  "Yacows acedemy theme for quokka CMS.",
+    "author":       "Bruno Cezar Rocha",
+    "website":      "http://www.quokkaproject.org",
+    "license":      "WTF",
+    "preview":      "preview.png",
+    "doctype":      "html5",
+    "version":      "1.0.0"
+}
