@@ -4,33 +4,32 @@
 {% block content %}
 <div class="large-8 columns">
     {% for content in contents %}
+     <div>
       <h2><a href="{{ content.get_absolute_url() }}">{{ content.title }}</a></h2>
 
-        {% if content.summary %}
-           <p>{{ content.summary|truncate(255)|safe() }}</p>
-        {% endif %}
+	{% if content.summary %}
+	   <p>{{ content.summary|truncate(255)|safe() }}</p>
+	{% endif %}
 
-        {% if content.embed_code %}
-          {{ content.embed_code|safe() }}
-        {% endif %}
-
-        {% if content.image_url %}
-          <p><img src="{{ content.image_url }}" /><p>
-        {% endif %}
+	{% if content.embed_code %}
+	  {{ content.embed_code|safe() }}
+	{% endif %}
+	  <p><img src="{{ content.get_main_image_url(thumb=True, default='http://placehold.it/200x200') }}" /><p>
 
       <p>
-        {{ content.created_at.strftime('%H:%M %Y-%m-%d') }} |
-        {% with total=content.comments|length %}
-            {{ total }} comment {%- if total > 1 %}s{%- endif -%}
-        {% endwith %}
+	{{ content.created_at.strftime('%H:%M %Y-%m-%d') }} |
+	{% with total=content.comments|length %}
+	    {{ total }} comment {%- if total > 1 %}s{%- endif -%}
+	{% endwith %}
       </p>
+   </div>
     {% endfor %}
 </div>
 
 <div class="large-4 columns">
     <div class="channel-menu">
     <h3>Channels</h3>
-        {{ menu.build_nodes(nodes=channels) }}
+	{{ menu.build_nodes(nodes=channels) }}
     </div>
 </div>
 {% endblock %}

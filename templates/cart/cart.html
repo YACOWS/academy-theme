@@ -17,7 +17,6 @@
       <tr>
 	 <th>Product </th>
 	 <th>Unity value </th>
-	 <th>Extra value </th>
 	 <th>Quantity </th>
 	 <th>Total </th>
 	 <th>Actions </th>
@@ -31,7 +30,6 @@
 	 <p>{{ item.description|truncate(140) }}</p>
 	  </td>
 	  <td>$ {{"%.2f" % item.unity_value}} </td>
-	  <td>$ {{"%.2f" % item.extra_value}} </td>
 	  <td>
 	<form action="{{url_for('cart.setitem')}}" method="POST">
 	  <input type="hidden" value="{{item.uid}}" name="uid">
@@ -48,8 +46,8 @@
       </tr>
       {% endfor %}
       <tr>
-	  <td colspan="2"></td>
-	  <td> $ {{"%.2f" % cart.items|sum(attribute="extra_value")}} </td>
+	  <td colspan="3"></td>
+
 	  <td> {{ cart.items|sum(attribute="quantity")|int }} </td>
 	  <td colspan="2"> $ {{ "%.2f" % cart.total }} </td>
       </tr>

@@ -11,20 +11,14 @@
 
 {% block content %}
 <div class="large-12 columns">
+
   {% if content.body %}
-  {% if content.content_type == 'Quote' %}
-    <blockquote>{{ content.body|safe() }}</blockquote>
-    <p>{{ content.author }}</p>
-  {% else %}
     <p>{{ content.body|safe() }}</p>
   {% endif %}
-{% endif %}
-{% if content.embed_code %}
-  {{ content.embed_code|safe() }}
-{% endif %}
-{% if content.image_url %}
-  <p><img src="{{ content.image_url }}" /><p>
-{% endif %}
+
+<p><img width="300" src="{{ content.get_main_image_url(thumb=False, default='http://placehold.it/300x300') }}" /><p>
+
+
   <p>{{ content.created_at.strftime('%H:%M %Y-%m-%d') }}</p>
   <hr>
   <h2>Comments</h2>
@@ -41,7 +35,7 @@
     <form action="{{content.get_absolute_url()}}" method="post">
       {{ forms.render(form) }}
       <div class="actions">
-        <input type="submit" class="button" value="comment">
+	<input type="submit" class="button" value="comment">
       </div>
     </form>
 </div>
