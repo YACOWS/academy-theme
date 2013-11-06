@@ -1,9 +1,11 @@
 {% extends theme('cart/cart_base.html') %}
 
-{% block content %}
-<span class="alert"> Your cart is empty</span><br/>
-<a href="{{url}}" class="button btn">Continue shopping</a>
-{% if current_user.is_authenticated() %}
-    <a class="button btn" href="{{url_for('cart.history')}}">Purchase history</a>
-{% endif %}
+{% block cart_base %}
+    <p class="well">
+        Seu carrinho está vazio.
+    </p>
+    <a href="{{url}}" class="button btn btn-success">Adicionar Cursos</a>
+    {% if current_user.is_authenticated() %}
+        <a class="button btn btn-info" href="{{url_for('cart.history')}}">Histórico de Compras</a>
+    {% endif %}
 {% endblock %}

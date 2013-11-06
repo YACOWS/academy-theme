@@ -1,14 +1,7 @@
 {% extends theme('cart/cart_base.html') %}
 
-{% block content %}
-
-   There was an error processing your cart<br />
-   Developers have been informed about this error </br />
-
-   erro: {{ e }}<br />
-
-   cart: {{ pipeline.cart }}
-
-
-
+{% block cart_base %}
+    <p class="well">
+        Ocorreu algum erro ao processar seu carrinho. O administrador já foi avisado.
+    </p>
 {% endblock %}
