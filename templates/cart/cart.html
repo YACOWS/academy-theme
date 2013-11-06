@@ -50,7 +50,7 @@
         </tbody>
     </table>
 
-    <form action="{{url_for('cart.checkout')}}" method="POST">
+    <form action="{{url_for('cart.checkout')}}" method="POST" style="float: right;">
         <fieldset>
             {%for processor in cart.get_available_processors() %}
             <label for="processor_{{processor.identifier}}">
@@ -60,16 +60,17 @@
             {% endfor %}
         </fieldset>
         <br>
-        <a href="{{cart.continue_shopping_url}}" class="button btn">Continue shopping</a>
+        <a href="{{cart.continue_shopping_url}}" class="button btn btn-success">Adicionar Cursos</a>
         {%if current_user.is_authenticated() or not cart.requires_login %}
-        <input type="submit" value="Checkout" class="button btn">
+        <input type="submit" value="Concluir compra" class="button btn btn-primary">
         {% else %}
-        <a href="{{url_for_security('login', next=url_for('cart.cart'))}}">Login and checkout</a>
+        <a href="{{url_for_security('login', next=url_for('cart.cart'))}}" class="btn-primary">Login e concluir compra</a>
         {% endif %}
     </form>
-
     {% if current_user.is_authenticated() %}
-        <a href="{{url_for('cart.history')}}">Purchase history</a>
+    <p style="float: right; clear: both;">
+        <a href="{{url_for('cart.history')}}" class="btn btn-info">Histórico de Compras</a>
+    </p>
     {% endif %}
     </div>
 {% endblock %}

@@ -729,3 +729,7 @@ ul.page-rss li a {
 .cases-list li .caption a {
   color: #000;
 }
+
+.site-content-body {
+  min-height: 320px;
+}
