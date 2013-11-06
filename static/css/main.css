@@ -1,8 +1,160 @@
-ul.ancestor-nav {
-  margin-top: 0px;
-  margin-left: 20px;
+.ir {
+    border: 0;
+    font: 0/0 a;
+    text-shadow: none;
+    color: transparent;
+    background-color: transparent;
 }
 
-ul.hidden-nav {
-  display: none;
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* site styles */
+@font-face {
+    font-family: 'RudaBlack';
+    src: url('../fonts/ruda-black-webfont.eot');
+    src: url('../fonts/ruda-black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/ruda-black-webfont.woff') format('woff'),
+         url('../fonts/ruda-black-webfont.ttf') format('truetype'),
+         url('../fonts/ruda-black-webfont.svg#RudaBlack') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+ul {
+    list-style: none;
+}
+
+@media (min-width: 979px) {
+    .contact-form {
+        width: 420px;
+    }
+}
+@media (max-width: 979px) {
+    .menu ul {
+        font-size: 12px;
+    }
+    .hl-wrapper .container,
+    .hl-wrapper section {
+        width: 100%;
+    }
+    .highlights section a.tab {
+        width: 256px;
+    }
+    .highlights .hl-item2 a.tab {
+        left: 256px;
+    }
+    .highlights .hl-item3 a.tab {
+        left: 512px;
+    }
+    .cases h1 {
+        padding-left: 20px;
+    }
+    .case-item img {
+        position: absolute;
+        height: 128px;
+        width: 200px;
+        left: 20px;
+        top: 90px;
+    }
+    .customers .span4,
+    .customers .span8 {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact .span6 {
+        width: 100%;
+        margin: 0;
+    }
+    .contact .span12 {
+        background: #EBEBEB;
+        height: auto;
+    }
+    .services-group .service-item:not(:last-child) {
+        margin-bottom: 30px;
+    }
+    .services-group .service-item:last-child {
+        background: none;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 0;
+    }
+    .logo {
+        margin: 10px auto;
+    }
+    #site-header {
+        height: 120px;
+    }
+    .menu ul {
+        text-align: center;
+        font-size: 14px;
+        margin: 0;
+    }
+    .menu a {
+        line-height: normal;
+        height: auto;
+    }
+    .menu a.active,
+    .menu a:hover {
+        background: none;
+    }
+    .case-item img {
+        position: static;
+        left: 0;
+        top: 0;
+    }
+    .yacows-footer {
+        position: static;
+    }
+    .service-item h2 {
+        background-position: left bottom;
+        padding-bottom: 10px;
+        height: auto;
+    }
 }

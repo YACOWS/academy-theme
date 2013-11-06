@@ -1,8 +1,14 @@
-$('.root-li').hover(
-    function(){
-        $(this).children('ul').show();
-    },
-    function(){
-        $(this).children('ul').hide();
-    }
-)
+var YACOWS = function() {
+    'use strict';
+
+    var init = function() {
+        // nothing
+    };
+
+    return {'init': init};
+};
+
+$(function(){
+    var y = YACOWS();
+    y.init();
+});

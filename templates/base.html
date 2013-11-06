@@ -1,104 +1,112 @@
 <!DOCTYPE html>
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width" />
-    <title>{{Config.get('site', 'site_name', 'Quokka CMS')}}</title>
-    <link href="//cdn.jsdelivr.net/foundation/4.3.1/css/normalize.css" rel="stylesheet">
-    <link href="//cdn.jsdelivr.net/foundation/4.3.1/css/foundation.min.css" rel="stylesheet">
-    <link href="{{ theme_static('css/main.css') }}" rel="stylesheet">
-    <script src="//cdn.jsdelivr.net/modernizr/2.6.2/modernizr.min.js"></script>
-    {% block head %}{% endblock %}
-  </head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <body>
+    <title>{% block title%}{% endblock %}YACOWS</title>
 
-    {%- block topbar -%}
-<!--a target="_blank" href="https://github.com/pythonhub/quokka"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a -->
+    {% block meta %}
+    <meta name="title" content="YACOWS">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta property="og:title" content="YACOWS">
+    <meta property="og:url" content="http://yacows.com.br/">
+    <meta property="og:image" content="http://yacows.com.br/static/img/img_placeholder.jpg">
+    {% endblock %}
 
-    <div class="contain-to-grid">
-    <nav class="top-bar" style="">
-	<ul class="title-area">
-	  <!-- Title Area -->
-	  <li class="name">
-	    <h1><a href="/"><img src="{{theme_static('img/logo.png')}}"> Academy</a></h1>
-	  </li>
-	  <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-	  <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-	</ul>
-
-
-      <section class="top-bar-section">
-
-	  <!-- Right Nav Section -->
-	  <ul class="right">
-	    <li class="divider hide-for-small"></li>
-
-	    {% if current_user.is_authenticated() %}
-	    <li class="has-dropdown not-click"><a href="#"><img src="{{current_user.email | gravatar(size=20) }}" /> {{current_user.name}}</a>
-
-	      <ul class="dropdown"><li class="title back js-generated"><h5><a href="#">« Back</a></h5></li>
-		<li class=""><label>Access control</label></li>
-
-		    <li><a href="/admin">Admin</a></li>
-		<li class="divider"></li>
-		<li><a href="{{url_for_security('change_password')}}">Change password</a></li>
-		<li><a href="{{url_for_security('logout')}}">Logout</a></li>
-	      </ul>
-	    </li>
-	    {% else %}
-	    <li class="has-dropdown not-click"><a href="#">Access</a>
-
-	      <ul class="dropdown"><li class="title back js-generated"><h5><a href="#">« Back</a></h5></li>
-		<li class=""><label>Acess control</label></li>
-		 <li><a href="{{url_for_security('register')}}">Register</a></li>
-		 <li><a href="{{url_for_security('login')}}">Login</a></li>
-		 <li><a href="{{url_for_security('forgot_password')}}">Forgot password</a></li>
-	      </ul>
-	    </li>
-	    {% endif %}
-
-
-	  </ul>
-	</section></nav>
-	</div>
-    {%- endblock -%}
-
-    <div class="row">
-	{% block page_header %}{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{{ theme_static('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" media="all" href="{{ theme_static('css/style.css') }}" />
+    
+    <link rel="stylesheet" type="text/css" href="{{ theme_static('css/main.css') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ theme_static('img/favicon.ico') }}">
+</head>
+<body>
+    <div class="header-bg">
+        <div class="container">
+            <header id="site-header" class="row">
+                <div class="span3">
+                    <a href="" class="logo sprite ir">Yacows</a>
+                </div>
+                <div class="span9">
+                    <nav class="menu">
+                        <ul>
+                            <li><a href="">HOME</a></li>
+                            <li><a href="">PRODUTOS</a></li>
+                            <li><a href="">SERVIÇOS</a></li>
+                            <li><a href="" class="active">TREINAMENTOS</a></li>
+                            <li><a href="">CASES</a></li>
+                            <li><a href="">TEAM</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+        </div>
     </div>
-    <div class="row">
-	{% block content %}{% endblock %}
+    {% block content %}
+    {% endblock %}
+    <div class="footer-media">
+        <div class="container">
+            <ul class="social">
+                <li class="tw"><img src="{{ theme_static('img/twitter.png') }}" alt="twitter"><a href="http://twitter.com/yacowsbr" target="_blank">twitter</a></li>
+                <li class="fb"><img src="{{ theme_static('img/facebook.png') }}" alt="facebook"><a href="https://www.facebook.com/YACOWS" target="_blank">facebook</a></li>
+                <li class="gh"><img src="{{ theme_static('img/github.png') }}" alt="github"><a href="https://github.com/YACOWS" target="_blank">github</a></li>
+                <li class="gp"><img src="{{ theme_static('img/googleplus.png') }}" alt="google +"><a href="https://plus.google.com/u/1/b/106202797465141607691/" target="_blank">google +</a></li>
+                <li class="in"><img src="{{ theme_static('img/linkedin.png') }}" alt="linkedin"><a href="http://www.linkedin.com/company/2269759?trk=tyah" target="_blank">linkedin</a></li>
+                <li class="rss"><img src="{{ theme_static('img/rss.png') }}" alt="rss"><a href="/rss" target="_blank">rss</a></li>
+            </ul>
+            <p class="copyright">Copyright © <b>YACOWS ACADEMY</b> 2013. Todos os direitos reservados.</p>
+        </div>
     </div>
+    {% block main %}
+    
+    {% endblock %}
 
-    <div class="row">
-	{% block footer %} &copy; Yacows Academy 2013 {% endblock %}
-    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{{ theme_static("js/vendor/jquery-1.7.2.min.js") }}"><\/script>')</script>
+    <script src="{{ theme_static('js/plugins.js') }}"></script>
+    <script src="{{ theme_static('js/main.js') }}"></script>
 
-      <script src="//cdn.jsdelivr.net/jquery/2.0.3/jquery-2.0.3.min.js"></script>
-      <script src="//cdn.jsdelivr.net/foundation/4.3.1/js/foundation/foundation.js"></script>
-      <script src="//cdn.jsdelivr.net/foundation/4.3.1/js/foundation/foundation.abide.js"></script>
-      <script src="//cdn.jsdelivr.net/foundation/4.3.1/js/foundation/foundation.alerts.js"></script>
-      <script src="//cdn.jsdelivr.net/foundation/4.3.1/js/foundation//foundation.clearing.js"></script>
-      <script src="//cdn.jsdelivr.net/foundation/4.3.1/js/foundation/foundation.cookie.js"></script>
-      <script src="//cdn.jsdelivr.net/foundation/4.3.1/js/foundation/foundation.dropdown.js"></script>
-      <script src="//cdn.jsdelivr.net/foundation/4.3.1/js/foundation/foundation.forms.js"></script>
-      <script src="//cdn.jsdelivr.net/foundation/4.3.1/js/foundation/foundation.joyride.js"></script>
-      <script src="//cdn.jsdelivr.net/foundation/4.3.1/js/foundation/foundation.magellan.js"></script>
-      <script src="//cdn.jsdelivr.net/foundation/4.3.1/js/foundation//foundation.orbit.js"></script>
-      <script src="//cdn.jsdelivr.net/foundation/4.3.1/js/foundation/foundation.placeholder.js"></script>
-      <script src="//cdn.jsdelivr.net/foundation/4.3.1/js/foundation/foundation.reveal.js"></script>
-      <script src="//cdn.jsdelivr.net/foundation/4.3.1/js/foundation/foundation.section.js"></script>
-      <script src="//cdn.jsdelivr.net/foundation/4.3.1/js/foundation/foundation.tooltips.js"></script>
-      <script src="//cdn.jsdelivr.net/foundation/4.3.1/js/foundation/foundation.topbar.js"></script>
-      <script src="//cdn.jsdelivr.net/foundation/4.3.1/js/foundation/foundation.interchange.js"></script>
-
-      <script src="{{ theme_static('js/main.js')}}"></script>
+    <script>var _gauges = _gauges || []; (function() { var t = document.createElement('script'); t.type = 'text/javascript'; t.async = true; t.id = 'gauges-tracker'; t.setAttribute('data-site-id', '51294a67108d7b1d3b0000eb'); t.src = '//secure.gaug.es/track.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(t, s); })();</script>
     <script>
-      $(document).foundation();
+        var _gaq=[['_setAccount','UA-24843741-1'],['_trackPageview']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
-    {% block js_footer %}{% endblock %}
-  </body>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+    <script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
+
+    <script type="text/javascript">
+      window.___gcfg = {lang: 'pt-BR'};
+
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+    <script>
+        setTimeout(function(){var a=document.createElement("script");
+        var b=document.getElementsByTagName("script")[0];
+        a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0012/7622.js?"+Math.floor(new Date().getTime()/3600000);
+        a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+    </script>
+</body>
 </html>
