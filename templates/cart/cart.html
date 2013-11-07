@@ -29,7 +29,7 @@
 		    <h5><a href="{{item.link}}">{{ item.title }}</a></h5>
 		    {% endif %}
 
-		    <p>{{ item.description|truncate(255)|safe() }}</p>
+		    <p>{{ item.description|truncate(500)|safe() }}</p>
 		</td>
 		<td>R$ {{"{:.2f}".format(item.unity_value)|replace(".", ",")}} </td>
 		<!--td>
