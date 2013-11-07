@@ -14,9 +14,9 @@
 	    <tr>
 		<th>Treinamento</th>
 		<th>Valor Unitário</th>
-		<th>Quantidade</th>
-		<th>Total</th>
-		<th>Ações</th>
+		<!-- th>Quantidade</th -->
+		<!-- th>Total</th -->
+		<th></th>
 	    </tr>
 	</thead>
 	<tbody>
@@ -24,16 +24,16 @@
 	    <tr>
 		<td>
 		    <h5>{{ item.title }}</h5>
-		    <p>{{ item.description|truncate(140)|safe() }}</p>
+		    <p>{{ item.description|truncate(255)|safe() }}</p>
 		</td>
 		<td>R$ {{"{:.2f}".format(item.unity_value)|replace(".", ",")}} </td>
-		<td>
+		<!--td>
 		    <form action="{{url_for('cart.setitem')}}" method="POST">
 			<input type="hidden" value="{{item.uid}}" name="uid">
 			<input style="width: 30px;" type="number" min="1"  value="{{ item.quantity|int }}" name="quantity" onchange="$(this).parent().submit()">
 		    </form>
-		</td>
-		<td>R$ {{"{:.2f}".format(item.total)|replace(".", ",")}} </td>
+		</td -->
+		<!-- td>R$ {{"{:.2f}".format(item.total)|replace(".", ",")}} </td -->
 		<td>
 		    <form action="{{url_for('cart.removeitem')}}" method="POST">
 			<input type="hidden" value="{{item.uid}}" name="uid">
@@ -43,8 +43,8 @@
 	    </tr>
 	    {% endfor %}
 	    <tr>
-		<td colspan="3"></td>
-		<td> {{ cart.items|sum(attribute="quantity")|int }} </td>
+		<td colspan="1"></td>
+		<!-- td> {{ cart.items|sum(attribute="quantity")|int }} </td -->
 		<td colspan="2"> R$ {{"{:.2f}".format(cart.total)|replace(".", ",")}} </td>
 	    </tr>
 	</tbody>
@@ -52,6 +52,7 @@
 
     <form action="{{url_for('cart.checkout')}}" method="POST" style="float: right;">
 	<fieldset>
+	     <legend>Pagamento</legend>
 	    {%for processor in cart.get_available_processors() %}
 	    <label for="processor_{{processor.identifier}}">
 		<input onchange="ajax_set_processor($(this).val())" type="radio" id="processor_{{processor.identifier}}" name="processor" value="{{processor.identifier}}" {% if processor == cart.processor %}checked{% endif %}>

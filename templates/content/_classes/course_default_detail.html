@@ -1,0 +1,82 @@
+{% extends theme("base.html") %}
+{% import theme("_forms.html") as forms %}
+
+{% block content %}
+    <div class="page-products">
+	<section class="container">
+	    <div class="page-products-header row">
+		<div class="span12">
+		    <h1>{{ content.title }}<span>.</span></h1>
+		</div>
+	    </div>
+	    <div class="row site-content-body">
+		<div class="span12">
+		    <p>
+		     <br />
+		    {{ content.summary|safe()}}
+		    </p>
+		    <form action="{{url_for('classes.subscribe')}}" method="POST" class="form-horizontal">
+			<input type="hidden" name="course_id" value="{{ content.id }}">
+			<div class="row">
+			    <fieldset class="span5">
+				<legend>Dados do treinamento</legend>
+				<div class="control-group">
+				    <label class="control-label" for="select-variant">Modalidade</label>
+				    <div class="controls">
+					<select id="select-variant" name="variant" required>
+					    <option value="regular">Presencial: R$ {{"{:.2f}".format(content.get_unity_value())|replace(".", ",")}}</option>
+					    {% for variant in content.variants %}
+					    <option value="{{variant.slug}}">{{variant.title}}: R$ {{"{:.2f}".format(variant.unity_value)|replace(".", ",")}}</option>
+					    {% endfor %}
+					</select>
+				    </div>
+				</div>
+				<div class="control-group">
+				    <label class="control-label">Turma</label>
+				    <div class="controls">
+				    {% for classroom in content.classes %}
+					<label class="radio" for="classroom_{{classroom.slug}}">
+					    <input type="radio" name="classroom" id="classroom_{{classroom.slug}}" value="{{classroom.slug}}" required>
+					    <b>{{classroom.title}}</b><br>
+					    <b>Início: </b>{{classroom.start_date.strftime('%d/%m/%Y %H:%M')}}<br>
+					    <b>Fim: </b>{{classroom.end_date.strftime('%d/%m/%Y %H:%M')}}<br>
+					    <b>Dias: </b>
+					    {{classroom.get_weekdays_display(mon="Seg", tue="Ter", wed="Qua", thu="Qui", fri="Sex", sat="Sáb", sun="Dom")|join(" | ")}}
+					</label>
+				    {% endfor %}
+				    </div>
+				</div>
+			    </fieldset>
+			    <fieldset class="span6">
+				<legend>Dados do aluno</legend>
+				<div class="control-group">
+				    <label class="control-label" for="input-name">Nome</label>
+				    <div class="controls">
+					<input type="text" name="name" id="input-name" class="input-xlarge" required placeholder="josé silva">
+				    </div>
+				</div>
+				<div class="control-group">
+				    <label class="control-label" for="input-name">Email</label>
+				    <div class="controls">
+					<input type="email" name="email" id="input-name" class="input-xlarge" required placeholder="jose@silva.com">
+				    </div>
+				</div>
+				<div class="control-group">
+				    <label class="control-label" for="input-name">Telefone</label>
+				    <div class="controls">
+					<input type="text" name="phone" id="input-name" class="input-xlarge" required placeholder="(00) 9999-9999">
+				    </div>
+				</div>
+				<div class="control-group">
+				    <div class="controls">
+					<input type="submit" value="Inscrever" class="btn button btn-primary">
+				    </div>
+				</div>
+			    </fieldset>
+			</div>
+		    </form>
+		</div>
+	    </div>
+	</section>
+    </div>
+{% endblock %}
