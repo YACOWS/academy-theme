@@ -10,66 +10,66 @@
 
 {% block cart_base %}
     <table class="table">
-        <thead>
-            <tr>
-                <th>Treinamento</th>
-                <th>Valor Unitário</th>
-                <th>Quantidade</th>
-                <th>Total</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in cart.items %}
-            <tr>
-                <td>
-                    <h5>{{ item.title }}</h5>
-                    <p>{{ item.description|truncate(140) }}</p>
-                </td>
-                <td>$ {{"%.2f" % item.unity_value}} </td>
-                <td>
-                    <form action="{{url_for('cart.setitem')}}" method="POST">
-                        <input type="hidden" value="{{item.uid}}" name="uid">
-                        <input type="number" min="1"  value="{{ item.quantity|int }}" name="quantity" onchange="$(this).parent().submit()">
-                    </form>
-                </td>
-                <td>$ {{"%.2f" % item.total}} </td>
-                <td>
-                    <form action="{{url_for('cart.removeitem')}}" method="POST">
-                        <input type="hidden" value="{{item.uid}}" name="uid">
-                        <input type="submit" value="x remover" class="btn" title="remove item">
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-            <tr>
-                <td colspan="3"></td>
-                <td> {{ cart.items|sum(attribute="quantity")|int }} </td>
-                <td colspan="2"> $ {{ "%.2f" % cart.total }} </td>
-            </tr>
-        </tbody>
+	<thead>
+	    <tr>
+		<th>Treinamento</th>
+		<th>Valor Unitário</th>
+		<th>Quantidade</th>
+		<th>Total</th>
+		<th>Ações</th>
+	    </tr>
+	</thead>
+	<tbody>
+	    {% for item in cart.items %}
+	    <tr>
+		<td>
+		    <h5>{{ item.title }}</h5>
+		    <p>{{ item.description|truncate(140)|safe() }}</p>
+		</td>
+		<td>R$ {{"{:.2f}".format(item.unity_value)|replace(".", ",")}} </td>
+		<td>
+		    <form action="{{url_for('cart.setitem')}}" method="POST">
+			<input type="hidden" value="{{item.uid}}" name="uid">
+			<input style="width: 30px;" type="number" min="1"  value="{{ item.quantity|int }}" name="quantity" onchange="$(this).parent().submit()">
+		    </form>
+		</td>
+		<td>R$ {{"{:.2f}".format(item.total)|replace(".", ",")}} </td>
+		<td>
+		    <form action="{{url_for('cart.removeitem')}}" method="POST">
+			<input type="hidden" value="{{item.uid}}" name="uid">
+			<input type="submit" value="x remover" class="btn" title="remove item">
+		    </form>
+		</td>
+	    </tr>
+	    {% endfor %}
+	    <tr>
+		<td colspan="3"></td>
+		<td> {{ cart.items|sum(attribute="quantity")|int }} </td>
+		<td colspan="2"> R$ {{"{:.2f}".format(cart.total)|replace(".", ",")}} </td>
+	    </tr>
+	</tbody>
     </table>
 
     <form action="{{url_for('cart.checkout')}}" method="POST" style="float: right;">
-        <fieldset>
-            {%for processor in cart.get_available_processors() %}
-            <label for="processor_{{processor.identifier}}">
-                <input onchange="ajax_set_processor($(this).val())" type="radio" id="processor_{{processor.identifier}}" name="processor" value="{{processor.identifier}}" {% if processor == cart.processor %}checked{% endif %}>
-                {{processor.title}}
-            </label>
-            {% endfor %}
-        </fieldset>
-        <br>
-        <a href="{{cart.continue_shopping_url}}" class="button btn btn-success">Adicionar Cursos</a>
-        {%if current_user.is_authenticated() or not cart.requires_login %}
-        <input type="submit" value="Concluir compra" class="button btn btn-primary">
-        {% else %}
-        <a href="{{url_for_security('login', next=url_for('cart.cart'))}}" class="btn-primary">Login e concluir compra</a>
-        {% endif %}
+	<fieldset>
+	    {%for processor in cart.get_available_processors() %}
+	    <label for="processor_{{processor.identifier}}">
+		<input onchange="ajax_set_processor($(this).val())" type="radio" id="processor_{{processor.identifier}}" name="processor" value="{{processor.identifier}}" {% if processor == cart.processor %}checked{% endif %}>
+		{{processor.title}}
+	    </label>
+	    {% endfor %}
+	</fieldset>
+	<br>
+	<a href="{{cart.continue_shopping_url}}" class="button btn btn-success">Adicionar Cursos</a>
+	{%if current_user.is_authenticated() or not cart.requires_login %}
+	<input type="submit" value="Concluir compra" class="button btn btn-primary">
+	{% else %}
+	<a href="{{url_for_security('login', next=url_for('cart.cart'))}}" class="btn-primary">Login e concluir compra</a>
+	{% endif %}
     </form>
     {% if current_user.is_authenticated() %}
     <p style="float: right; clear: both;">
-        <a href="{{url_for('cart.history')}}" class="btn btn-info">Histórico de Compras</a>
+	<a href="{{url_for('cart.history')}}" class="btn btn-info">Histórico de Compras</a>
     </p>
     {% endif %}
     </div>

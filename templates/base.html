@@ -22,62 +22,64 @@
 
     <link rel="stylesheet" type="text/css" href="{{ theme_static('css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" media="all" href="{{ theme_static('css/style.css') }}" />
-    
+
     <link rel="stylesheet" type="text/css" href="{{ theme_static('css/main.css') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ theme_static('img/favicon.ico') }}">
 </head>
 <body>
     <div class="header-bg">
-        <div class="container">
-            <header id="site-header" class="row">
-                <div class="span3">
-                    <a href="" class="logo sprite ir">Yacows</a>
-                </div>
-                <div class="span9">
-                    <nav class="menu">
-                        <ul>
-                            <li><a href="http://yacows.com.br">HOME</a></li>
-                            <li><a href="http://yacows.com.br/produtos/">PRODUTOS</a></li>
-                            <li><a href="http://yacows.com.br/servicos/">SERVIÇOS</a></li>
-                            <li><a href="http://yacows.com.br/treinamentos/" class="active">TREINAMENTOS</a></li>
-                            <li><a href="http://yacows.com.br/cases/">CASES</a></li>
-                            <li><a href="http://yacows.com.br/team/">TEAM</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </header>
-        </div>
+	<div class="container">
+	    <header id="site-header" class="row">
+		<div class="span3">
+		    <a href="" class="logo sprite ir">Yacows</a>
+		</div>
+		<div class="span9">
+		    <nav class="menu">
+			<ul>
+			    <li><a href="http://yacows.com.br">HOME</a></li>
+			    <li><a href="http://yacows.com.br/produtos/">PRODUTOS</a></li>
+			    <li><a href="http://yacows.com.br/servicos/">SERVIÇOS</a></li>
+			    <li><a href="http://yacows.com.br/treinamentos/" class="active">TREINAMENTOS</a></li>
+			    <li><a href="http://yacows.com.br/cases/">CASES</a></li>
+			    <li><a href="http://yacows.com.br/team/">TEAM</a></li>
+			</ul>
+		    </nav>
+		</div>
+	    </header>
+	</div>
     </div>
     {% block content %}
     {% endblock %}
     <div class="footer-media">
-        <div class="container">
-            <ul class="social">
-                <li class="tw"><img src="{{ theme_static('img/twitter.png') }}" alt="twitter"><a href="http://twitter.com/yacowsbr" target="_blank">twitter</a></li>
-                <li class="fb"><img src="{{ theme_static('img/facebook.png') }}" alt="facebook"><a href="https://www.facebook.com/YACOWS" target="_blank">facebook</a></li>
-                <li class="gh"><img src="{{ theme_static('img/github.png') }}" alt="github"><a href="https://github.com/YACOWS" target="_blank">github</a></li>
-                <li class="gp"><img src="{{ theme_static('img/googleplus.png') }}" alt="google +"><a href="https://plus.google.com/u/1/b/106202797465141607691/" target="_blank">google +</a></li>
-                <li class="in"><img src="{{ theme_static('img/linkedin.png') }}" alt="linkedin"><a href="http://www.linkedin.com/company/2269759?trk=tyah" target="_blank">linkedin</a></li>
-                <li class="rss"><img src="{{ theme_static('img/rss.png') }}" alt="rss"><a href="/rss" target="_blank">rss</a></li>
-            </ul>
-            <p class="copyright">Copyright © <b>YACOWS ACADEMY</b> 2013. Todos os direitos reservados.</p>
-        </div>
+	<div class="container">
+	    <ul class="social">
+		<li class="tw"><img src="{{ theme_static('img/twitter.png') }}" alt="twitter"><a href="http://twitter.com/yacowsbr" target="_blank">twitter</a></li>
+		<li class="fb"><img src="{{ theme_static('img/facebook.png') }}" alt="facebook"><a href="https://www.facebook.com/YACOWS" target="_blank">facebook</a></li>
+		<li class="gh"><img src="{{ theme_static('img/github.png') }}" alt="github"><a href="https://github.com/YACOWS" target="_blank">github</a></li>
+		<li class="gp"><img src="{{ theme_static('img/googleplus.png') }}" alt="google +"><a href="https://plus.google.com/u/1/b/106202797465141607691/" target="_blank">google +</a></li>
+		<li class="in"><img src="{{ theme_static('img/linkedin.png') }}" alt="linkedin"><a href="http://www.linkedin.com/company/2269759?trk=tyah" target="_blank">linkedin</a></li>
+		<li class="rss"><img src="{{ theme_static('img/rss.png') }}" alt="rss"><a href="/rss" target="_blank">rss</a></li>
+	    </ul>
+	    <p class="copyright">Copyright © <b>YACOWS ACADEMY</b> 2013. Todos os direitos reservados.</p>
+	</div>
     </div>
     {% block main %}
-    
+
     {% endblock %}
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="{{ theme_static("js/vendor/jquery-1.7.2.min.js") }}"><\/script>')</script>
+
     <script src="{{ theme_static('js/plugins.js') }}"></script>
     <script src="{{ theme_static('js/main.js') }}"></script>
 
+    {% block js_footer %}{% endblock %}
     <script>var _gauges = _gauges || []; (function() { var t = document.createElement('script'); t.type = 'text/javascript'; t.async = true; t.id = 'gauges-tracker'; t.setAttribute('data-site-id', '51294a67108d7b1d3b0000eb'); t.src = '//secure.gaug.es/track.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(t, s); })();</script>
     <script>
-        var _gaq=[['_setAccount','UA-24843741-1'],['_trackPageview']];
-        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-        s.parentNode.insertBefore(g,s)}(document,'script'));
+	var _gaq=[['_setAccount','UA-24843741-1'],['_trackPageview']];
+	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
 
     <div id="fb-root"></div>
@@ -97,16 +99,17 @@
       window.___gcfg = {lang: 'pt-BR'};
 
       (function() {
-        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-        po.src = 'https://apis.google.com/js/plusone.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	po.src = 'https://apis.google.com/js/plusone.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
       })();
     </script>
     <script>
-        setTimeout(function(){var a=document.createElement("script");
-        var b=document.getElementsByTagName("script")[0];
-        a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0012/7622.js?"+Math.floor(new Date().getTime()/3600000);
-        a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+	setTimeout(function(){var a=document.createElement("script");
+	var b=document.getElementsByTagName("script")[0];
+	a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0012/7622.js?"+Math.floor(new Date().getTime()/3600000);
+	a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
     </script>
+
 </body>
 </html>
