@@ -23,7 +23,12 @@
 	    {% for item in cart.items %}
 	    <tr>
 		<td>
-		    <h5>{{ item.title }}</h5>
+		    {% if item.link %}
+		    <h5><a href="{{item.link}}">{{ item.title }}</a></h5>
+		    {% else %}
+		    <h5><a href="{{item.link}}">{{ item.title }}</a></h5>
+		    {% endif %}
+
 		    <p>{{ item.description|truncate(255)|safe() }}</p>
 		</td>
 		<td>R$ {{"{:.2f}".format(item.unity_value)|replace(".", ",")}} </td>
@@ -65,7 +70,7 @@
 	{%if current_user.is_authenticated() or not cart.requires_login %}
 	<input type="submit" value="Concluir compra" class="button btn btn-primary">
 	{% else %}
-	<a href="{{url_for_security('login', next=url_for('cart.cart'))}}" class="btn-primary">Login e concluir compra</a>
+	<a href="{{url_for_security('login', next=url_for('cart.cart'))}}" class="btn btn-primary">Login e concluir compra</a>
 	{% endif %}
     </form>
     {% if current_user.is_authenticated() %}
