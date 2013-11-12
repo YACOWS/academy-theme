@@ -1,0 +1,17 @@
+{% extends theme('cart/cart_base.html') %}
+{% block cart_base %}
+    <p class="well">
+	Ocorreram erros:<br>
+       {% if response.errors|isinstance('dict') %}
+	  {{response.errors.code}}: {{response.errors.message}}
+       {% else %}
+
+	  {% for error in response.errors %}
+	      {{error['code']}} - {{error['message']}}
+	   {% endfor %}
+
+       {% endif %}
+    <br >
+    Clique em voltar e tente novamente.
+    </p>
+{% endblock %}
